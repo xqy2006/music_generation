@@ -28,6 +28,7 @@ jobs:
         string: ${{ github.event.issue.body }}
         split-by: "歌词 \n "
     - uses: mad9000/actions-find-and-replace-string@2
+      id: findandreplace
       with:
         source: ${{ steps.split.outputs._1}} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
         find: "\n"        # we want to remove ref/heads/ from source 
