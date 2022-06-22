@@ -22,6 +22,11 @@ jobs:
         dir
       env:
           BODY: ${{ github.event.issue.body }}
+    - uses: rishabhgupta/split-by@v1
+      id: split
+      with:
+        string: ${{ github.event.issue.body }}
+        split-by: '/n'
     - name: Create comment
       uses: actions-cool/issues-helper@v2
       with:
@@ -29,7 +34,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            你好 ${{ github.event.issue.user.login }} ，生成结果下载地址为：https://xqy2006.github.io/music_generation/${{ '*.midi' }}.midi
+            你好 ${{ github.event.issue.user.login }} ，生成结果下载地址为：https://xqy2006.github.io/music_generation/${{ steps.split.outputs._1}}.midi
     - name: Close issue
       uses: actions-cool/issues-helper@v2
       with:
