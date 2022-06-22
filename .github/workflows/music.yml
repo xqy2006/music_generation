@@ -29,7 +29,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            你好 ${{ github.event.issue.user.login }} ，生成结果下载地址为：https://xqy2006.github.io/music_generation/${{ replace(${{ github.event.issue.body }}, ### 歌词, )}}.midi
+            你好 ${{ github.event.issue.user.login }} ，生成结果下载地址为：https://xqy2006.github.io/music_generation/'*.midi'.midi
     - name: Close issue
       uses: actions-cool/issues-helper@v2
       with:
