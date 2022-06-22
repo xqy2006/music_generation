@@ -125,8 +125,8 @@ for i, lyric in enumerate(input_lyrics.replace('\n', '')):
     stream1.append(n1)
 import random
 name = ''
-stream1.write("xml", './results/' + input + ".xml")
-stream1.write('midi', './results/' + input + '.midi')
+stream1.write("xml", './' + input + ".xml")
+stream1.write('midi', './' + input + '.midi')
 output = input + '.midi'
 print(output)
 
