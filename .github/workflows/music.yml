@@ -22,6 +22,10 @@ jobs:
         dir
       env:
           BODY: ${{ github.event.issue.body }}
+    - uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: store
+        folder: result
     - uses: rishabhgupta/split-by@v1
       id: split
       with:
