@@ -1,0 +1,24 @@
+name: music
+on:
+  issues:
+    types: [opened,edited]
+  workflow_dispatch:
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - run: |
+        pip install paddlepaddle
+        pip install music21
+        pip install protobuf==3.20.0
+        python music.py $BODY
+        dir
+      env:
+          BODY: ${{ github.event.issue.body }}

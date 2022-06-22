@@ -1,0 +1,14 @@
+name: 音乐生成
+description: 音乐生成
+title: "音乐生成"
+labels: ["music_generation"]
+body:
+  - type: textarea
+    id: input_text
+    attributes:
+      label: "歌词"
+      description: 请输入要谱曲的歌词：
+      placeholder: 
+      value: 
+    validations:
+      required: true
