@@ -26,7 +26,7 @@ jobs:
       id: split
       with:
         string: ${{ github.event.issue.body }}
-        split-by: '\n'
+        split-by: "\n"
     - name: Create comment
       uses: actions-cool/issues-helper@v2
       with:
