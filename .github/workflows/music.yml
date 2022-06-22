@@ -27,6 +27,11 @@ jobs:
       with:
         string: ${{ github.event.issue.body }}
         split-by: "歌词 \n "
+    - uses: mad9000/actions-find-and-replace-string@2
+      with:
+        source: ${{ steps.split.outputs._1}} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
+        find: "\n"        # we want to remove ref/heads/ from source 
+        replace: ''               # and replace it with a blank string (ie. removing it)
     - name: Create comment
       uses: actions-cool/issues-helper@v2
       with:
@@ -34,7 +39,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            你好 ${{ github.event.issue.user.login }} ，生成结果下载地址为：https://xqy2006.github.io/music_generation/${{ steps.split.outputs._1}}.midi
+            你好 ${{ github.event.issue.user.login }} ，生成结果下载地址为：https://xqy2006.github.io/music_generation/${{ steps.findandreplace.outputs.value }}.midi
     - name: Close issue
       uses: actions-cool/issues-helper@v2
       with:
