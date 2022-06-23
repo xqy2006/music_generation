@@ -6,7 +6,7 @@
 ## 使用方法
 #### 1. 登录/注册你的Github账户
 #### 2. 点击Issues
-![method](/images/0.png)
+![method](https://xqy2006.github.io/store/0.png)
 #### 3. 点击New issue
 #### 4. 点击Get started
 #### 5. 在输入框内填写要谱曲的歌词，点击Submit new issue
