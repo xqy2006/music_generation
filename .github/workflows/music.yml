@@ -15,11 +15,7 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: |
-        git clone -b store https://github.com/xqy2006/music_generation.git “result”
-        dir
-        cd result
-        dir
-        cd ..
+        git clone -b store https://github.com/xqy2006/music_generation.git "result"
         pip install paddlepaddle
         pip install music21
         pip install protobuf==3.20.0
