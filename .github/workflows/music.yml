@@ -19,7 +19,9 @@ jobs:
         pip install music21
         pip install protobuf==3.20.0
         python music.py $BODY $ID
-        dir
+        cd result
+        git clone -b store https://github.com/xqy2006/music_generation.git
+        cd ..
       env:
           BODY: ${{ github.event.issue.body }}
           ID: ${{ github.event.issue.number }}
