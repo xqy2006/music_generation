@@ -18,7 +18,7 @@ jobs:
         pip install paddlepaddle
         pip install music21
         pip install protobuf==3.20.0
-        python music.py $BODY
+        python music.py $BODY $ID
         dir
       env:
           BODY: ${{ github.event.issue.body }}
