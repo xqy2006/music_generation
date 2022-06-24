@@ -39,8 +39,10 @@ jobs:
         find: "\n"        # we want to remove ref/heads/ from source 
         replace: ''               # and replace it with a blank string (ie. removing it)
     - run: |
-        python sleep.py
+        python sleep.py $ID
         echo OK!
+      env:
+        ID: ${{ github.event.issue.number }}
     - name: Create comment
       uses: actions-cool/issues-helper@v2
       with:
