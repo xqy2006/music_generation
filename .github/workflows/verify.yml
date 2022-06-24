@@ -43,7 +43,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue_number,
-              body:"#您的输入有误！\n请检查您的输入是否全部为中文字符，并且没有标点\n可以通过 https://xqy2006.github.io/Chinese-character/ 去除非中文字符",
+              body:"# 您的输入有误！\n请检查您的输入是否全部为中文字符，并且没有标点\n可以通过 https://xqy2006.github.io/Chinese-character/ 去除非中文字符",
                       });
             await github.rest.issues.update({
             owner: context.repo.owner,
