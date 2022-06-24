@@ -38,6 +38,9 @@ jobs:
         source: ${{ steps.split.outputs._1}} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
         find: "\n"        # we want to remove ref/heads/ from source 
         replace: ''               # and replace it with a blank string (ie. removing it)
+    - run: |
+        python sleep.py
+        echo OK!
     - name: Create comment
       uses: actions-cool/issues-helper@v2
       with:
