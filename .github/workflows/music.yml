@@ -10,6 +10,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: |
+          mkdir -p ./id
+          echo $ID > ./id/id
+      env:
+          ID: ${{ github.event.issue.number }}
     - uses: actions/setup-python@v4
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
