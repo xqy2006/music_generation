@@ -1,6 +1,8 @@
 # 基于Github Actions & Github Issues的音乐生成 
 一个可以自动根据歌词进行谱曲的AI
+
 在20首儿歌的数据集上训练了10K step得到的模型
+
 ![Documentation Status](https://xqy2006.github.io/store/badge2.svg)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xqy2006/music_generation/music)
 ![GitHub closed issues](https://img.shields.io/github/issues/xqy2006/music_generation)
