@@ -1,4 +1,6 @@
 # 基于Github Actions & Github Issues的音乐生成 
+一个可以自动根据歌词进行谱曲的AI
+在20首儿歌的数据集上训练了10K step得到的模型
 ![Documentation Status](https://xqy2006.github.io/store/badge2.svg)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xqy2006/music_generation/music)
 ![GitHub closed issues](https://img.shields.io/github/issues/xqy2006/music_generation)
@@ -12,7 +14,7 @@
 ![method](https://xqy2006.github.io/store/1.png)
 #### 4. 点击Get started
 ![method](https://xqy2006.github.io/store/2.png)
-#### 5. 在输入框内填写要谱曲的歌词，点击Submit new issue
+#### 5. 在输入框内填写要谱曲的歌词，点击Submit new issue(输入歌词只能是中文，并且不能有标点，可以前往[这里]: https://xqy2006.github.io/Chinese-character/ 去除非中文字符)
 ![method](https://xqy2006.github.io/store/3.png)
 #### 6. 此时页面会跳转至issue详情页，系统需要一些时间处理请求，等待3-5分钟后刷新该页面，即可看到结果
 ![method](https://xqy2006.github.io/store/4.png)
