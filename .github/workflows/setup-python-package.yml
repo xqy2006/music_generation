@@ -27,7 +27,11 @@ jobs:
           pip install music21 -t ./packages
           pip install paddlepaddle -t ./packages
           pip install protobuf==3.20.0 -t ./packages
-      - uses: actions/upload-artifact@v2
+          zip -q -r packages.zip packages
+      - uses: ncipollo/release-action@v1
         with:
+          allowUpdates: true
+          tag: packages
           name: packages
-          path: packages
+          artifacts: |
+            packages.zip
