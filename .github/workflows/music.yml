@@ -26,9 +26,7 @@ jobs:
     - run: |
         python verify.py $BODY
         git clone -b store https://github.com/xqy2006/music_generation.git "result"
-        pip install paddlepaddle
-        pip install music21
-        pip install protobuf==3.20.0
+        pip install -r requirements.txt
         python music.py $BODY $ID
       env:
           BODY: ${{ github.event.issue.body }}
