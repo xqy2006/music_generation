@@ -1,0 +1,3 @@
+paddlepaddle
+music21
+protobuf==3.20.0
