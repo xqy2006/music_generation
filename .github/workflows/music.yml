@@ -1,4 +1,5 @@
 name: music
+concurrency: music
 on:
   issues:
     types: [opened,edited]
@@ -31,8 +32,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
     - run: |
-        pip install requests
-        python wait.py $ID
         python verify.py $BODY
         git clone -b store https://github.com/xqy2006/music_generation.git "result"
         pip install -r requirements.txt
