@@ -33,7 +33,7 @@ jobs:
           ${{ runner.os }}-pip-
     - run: |
         python verify.py $BODY
-        git clone -b store https://github.com/xqy2006/music_generation.git "result"
+        git clone -b gh-pages https://github.com/xqy2006/music_generation.git "result"
         pip install -r requirements.txt
         python music.py $BODY $ID
       env:
@@ -49,7 +49,7 @@ jobs:
           ID: ${{ github.event.issue.number }}
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
-        branch: store
+        branch: gh-pages
         folder: result
     - uses: rishabhgupta/split-by@v1
       id: split
