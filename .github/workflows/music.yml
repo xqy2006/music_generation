@@ -1,5 +1,7 @@
 name: music
-concurrency: music
+concurrency: 
+  group: music
+  cancel-in-progress: false
 on:
   issues:
     types: [opened,edited]
