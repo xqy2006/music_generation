@@ -1,7 +1,4 @@
 name: music
-concurrency: 
-  group: music
-  cancel-in-progress: false
 on:
   issues:
     types: [opened,edited]
@@ -13,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+    - uses: ahmadnassri/action-workflow-queue@v1
     - run: |
           mkdir -p ./id
           echo $ID > ./id/id
