@@ -39,6 +39,14 @@ jobs:
       env:
           BODY: ${{ github.event.issue.body }}
           ID: ${{ github.event.issue.number }}
+    - uses: FedericoCarboni/setup-ffmpeg@v1
+      id: setup-ffmpeg
+    - run: sudo apt-get install -y timidity
+    - run: |
+        timidity $ID.midi -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k $ID.mp3
+      env:
+          BODY: ${{ github.event.issue.body }}
+          ID: ${{ github.event.issue.number }}
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
         branch: store
@@ -67,6 +75,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             你好 ${{ github.event.issue.user.login }} ，生成结果如下：
+            mp3格式下载地址为（无曲谱，可直接播放）：https://xqy2006.github.io/music_generation/music/${{ github.event.issue.number }}.mp3
             midi格式下载地址为（导入到曲谱软件中无歌词，可在电脑上直接播放）：https://xqy2006.github.io/music_generation/music/${{ github.event.issue.number }}.midi
             xml格式下载地址为（导入到曲谱软件中有歌词，不可在电脑上直接播放）：https://xqy2006.github.io/music_generation/music/${{ github.event.issue.number }}.xml
     - name: Close issue
