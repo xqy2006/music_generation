@@ -1,0 +1,59 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "core-js": "^3.8.3",
+    "element-ui": "^2.15.9",
+    "jsonp": "^0.2.1",
+    "node-polyfill-webpack-plugin": "^2.0.0",
+    "path-browserify": "^1.0.1",
+    "qs": "^6.11.0",
+    "request": "^2.88.2",
+    "terser-webpack-plugin": "^5.3.3",
+    "vue": "^2.6.14",
+    "vue-cli": "^2.9.6",
+    "vue-cookies": "^1.8.1",
+    "vue-ele-form": "^0.8.58",
+    "vue-router": "^3.5.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "^5.0.0",
+    "@vue/cli-plugin-eslint": "^5.0.0",
+    "@vue/cli-service": "^5.0.0",
+    "crypto-js": "^4.1.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "vue-jsonp": "^2.0.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {
+      "no-mixed-spaces-and-tabs": 0
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
