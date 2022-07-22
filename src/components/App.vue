@@ -128,7 +128,10 @@ p321 {
 //import Utils from '@/utils.js'
 export default {
     created() {
-        if (navigator.cookieEnabled == false) {
+        this.$cookies.set("test",'', {
+                            expires: "-1"
+                        });
+        if (navigator.cookieEnabled == false || this.$cookies.isKey('test') == false) {
             this.$alert('请启用cookie以使用本网站功能', '未启用cookie', {
                 confirmButtonText: '刷新',
                 showClose: false,
@@ -139,6 +142,7 @@ export default {
                 },
             });
         }
+        this.$cookies.remove('test')
         if (this.$cookies.isKey('token') == false) {
             this.num = 1
             this.comments = [{
