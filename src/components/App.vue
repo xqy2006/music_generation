@@ -207,7 +207,7 @@ export default {
 
                 })
         }
-        if (this.$cookies.isKey('login')) {
+        if (this.$cookies.isKey('login') && this.$cookies.isKey('token')) {
             this.login = this.$cookies.get('login')
         }
         this.isTimeOut(this);
@@ -316,6 +316,15 @@ export default {
                                     });
                                     window.location.reload()
                                 } else {
+						if (this.$cookies.isKey('token')) {
+                                        this.$cookies.remove('token')
+                                    }
+                                    if (this.$cookies.isKey('login')) {
+                                        this.$cookies.remove('login')
+                                    }
+                                    if (this.$cookies.isKey('text')) {
+                                        this.$cookies.remove('text')
+                                    }
                                     this.$message.error('您还未登录');
                                 }
                             },
