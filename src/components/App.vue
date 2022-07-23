@@ -24,6 +24,9 @@
     </div>
     <el-card v-for="o in comments" :key="o" class="box-card" shadow="hover">
         <a style="display: block">{{ o.message }}</a>
+        <div style="margin-top: 5px;" v-if="o.urlmessage==false">
+            <el-button type="primary" @click.native="Login()">点我登录</el-button>
+        </div>
         <div style="margin-top: 5px;" v-if="o.urlmessage">
             <el-button type="primary" @click.native="Dowloadmp3(o.url)">下载mp3<i class="el-icon-download el-icon--right"></i></el-button>
         </div>
@@ -128,9 +131,9 @@ p321 {
 //import Utils from '@/utils.js'
 export default {
     created() {
-        this.$cookies.set("test",'', {
-                            expires: "-1"
-                        });
+        this.$cookies.set("test", '', {
+            expires: "-1"
+        });
         if (navigator.cookieEnabled == false || this.$cookies.isKey('test') == false) {
             this.$alert('请启用cookie以使用本网站功能', '未启用cookie', {
                 confirmButtonText: '刷新',
@@ -197,11 +200,10 @@ export default {
                                 });
                                 this.login = json["login"]
                             }
-                            var text = this.$cookies.get('text');
-                            if (text === null) {
+                            if (typeof this.formData.input == 'undefined') {
                                 window.location.href = 'https://xqy2006.github.io/music_generation'
                             } else {
-                                window.location.href = 'https://xqy2006.github.io/music_generation?state=' + text
+                                window.location.href = 'https://xqy2006.github.io/music_generation?state=' + this.formData.input
                             }
                         })
 
@@ -307,23 +309,17 @@ export default {
                                     if (this.$cookies.isKey('login')) {
                                         this.$cookies.remove('login')
                                     }
-                                    if (this.$cookies.isKey('text')) {
-                                        this.$cookies.remove('text')
-                                    }
                                     this.$message({
                                         message: '您已退出登录',
                                         type: 'success'
                                     });
                                     window.location.reload()
                                 } else {
-						if (this.$cookies.isKey('token')) {
+                                    if (this.$cookies.isKey('token')) {
                                         this.$cookies.remove('token')
                                     }
                                     if (this.$cookies.isKey('login')) {
                                         this.$cookies.remove('login')
-                                    }
-                                    if (this.$cookies.isKey('text')) {
-                                        this.$cookies.remove('text')
                                     }
                                     this.$message.error('您还未登录');
                                 }
@@ -376,6 +372,13 @@ export default {
         },
         Dowloadxml(url) {
             window.open(url + '.xml');
+        },
+        Login() {
+            if (typeof this.formData.input == 'undefined') {
+                window.location.href = "https://github.com/login/oauth/authorize/?client_id=Iv1.3834dcfa06a1a6ae"
+            } else {
+                window.location.href = "https://github.com/login/oauth/authorize/?client_id=Iv1.3834dcfa06a1a6ae&state=" + this.formData.input
+            }
         },
         RefreshComments() {
             if (this.$cookies.isKey('login') && this.$cookies.isKey('token')) {
@@ -445,12 +448,6 @@ export default {
                     confirmButtonText: '登录',
                     callback: action => {
                         if (action == 'confirm') {
-                            if (this.$cookies.isKey('text')) {
-                                this.$cookies.remove('text')
-                            }
-                            this.$cookies.set("text", data['input'], {
-                                expires: "30D"
-                            });
                             window.location.href = "https://github.com/login/oauth/authorize/?client_id=Iv1.3834dcfa06a1a6ae&state=" + data['input'];
                         }
                     },
