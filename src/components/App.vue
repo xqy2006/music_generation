@@ -15,7 +15,7 @@
             <p321>&nbsp;</p321>
         </p>
     </div>
-    <div id="form">
+    <div id="form" style="margin-inline-start: 50px;margin-inline-end: 50px;">
         <ele-form v-bind="formConfig" v-model="formData" :request-fn="handleRequest" @request-success="handleRequestSuccess" />
     </div>
     <div>
