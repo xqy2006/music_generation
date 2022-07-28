@@ -22,11 +22,9 @@
             <el-button style="margin-top: 20px;padding: 20px 20px;" type="primary" @click="Chinese()">去除所有非中文字符</el-button>
         </div>
         <div>
-            <el-button v-if="islogin" style="margin-top: 20px;padding: 20px 20px;" type="success" @click="Login()">登录</el-button>
+            <el-button style="margin-top: 20px;padding: 20px 25px;" type="primary" @click="Submit()">提交</el-button>
+            <el-button v-if="islogin" style="margin-top: 20px;padding: 20px 25px;" type="success" @click="Login()">登录</el-button>
             <el-button v-if="islogin==false" style="margin-top: 20px;padding: 20px 20px;" type="danger" @click="Logout()">退出账号登录</el-button>
-        </div>
-        <div>
-            <el-button style="margin-top: 20px;padding: 20px 20px;" type="primary" @click="Submit()">提交</el-button>
         </div>
     </div>
     <div style="margin-top: 20px;">
@@ -396,54 +394,62 @@ export default {
         },
         Submit() {
             var data = this.textarea
-            if (this.ischinese == false) {
+            if (this.textarea == '') {
                 ElNotification({
                     title: '错误',
-                    message: '歌词中包含非中文字符',
+                    message: '未输入歌词',
                     type: 'error',
                 })
             } else {
-                if (this.$cookies.isKey('token')) {
-                    let loading = this.$loading({
-                        lock: true, //lock的修改符--默认是false
-                        text: "加载中，请稍候...", //显示在加载图标下方的加载文案
-                        background: "rgba(255,255,255,0.8)", //遮罩层颜色
-                    });
-                    var githubtoken = this.$cookies.get('token')
-                    fetch(
-                            "https://api.github.com/repos/xqy2006/music_generation/issues", {
-                                headers: {
-                                    Authorization: "token " + githubtoken,
-                                    "Content-Type": 'application/json'
-                                },
-                                method: "POST",
-                                mode: 'cors',
-                                body: JSON.stringify({
-                                    access_token: githubtoken,
-                                    title: 'music_generation',
-                                    body: '### 歌词\n\n' + this.textarea,
-                                    labels: [
-                                        'music_generation'
-                                    ]
-                                }),
-                            }
-                        ).then(response => response.json())
-                        .then(json => {
-                            window.open(json['html_url'], '_blank');
-                            loading.close();
-                        })
+                if (this.ischinese == false) {
+                    ElNotification({
+                        title: '错误',
+                        message: '歌词中包含非中文字符',
+                        type: 'error',
+                    })
                 } else {
+                    if (this.$cookies.isKey('token')) {
+                        let loading = this.$loading({
+                            lock: true, //lock的修改符--默认是false
+                            text: "加载中，请稍候...", //显示在加载图标下方的加载文案
+                            background: "rgba(255,255,255,0.8)", //遮罩层颜色
+                        });
+                        var githubtoken = this.$cookies.get('token')
+                        fetch(
+                                "https://api.github.com/repos/xqy2006/music_generation/issues", {
+                                    headers: {
+                                        Authorization: "token " + githubtoken,
+                                        "Content-Type": 'application/json'
+                                    },
+                                    method: "POST",
+                                    mode: 'cors',
+                                    body: JSON.stringify({
+                                        access_token: githubtoken,
+                                        title: 'music_generation',
+                                        body: '### 歌词\n\n' + this.textarea,
+                                        labels: [
+                                            'music_generation'
+                                        ]
+                                    }),
+                                }
+                            ).then(response => response.json())
+                            .then(json => {
+                                window.open(json['html_url'], '_blank');
+                                loading.close();
+                            })
+                    } else {
 
-                    this.$alert('请先登录GitHub', '未登录GitHub', {
-                        confirmButtonText: '登录',
-                        callback: action => {
-                            if (action == 'confirm') {
-                                window.location.href = "https://github.com/login/oauth/authorize/?client_id=Iv1.3834dcfa06a1a6ae&state=" + this.textarea;
-                            }
-                        },
-                    });
+                        this.$alert('请先登录GitHub', '未登录GitHub', {
+                            confirmButtonText: '登录',
+                            callback: action => {
+                                if (action == 'confirm') {
+                                    window.location.href = "https://github.com/login/oauth/authorize/?client_id=Iv1.3834dcfa06a1a6ae&state=" + this.textarea;
+                                }
+                            },
+                        });
+                    }
+                    return Promise.resolve();
                 }
-                return Promise.resolve();
             }
         },
         startTimer(_this) {
