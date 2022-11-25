@@ -26,5 +26,5 @@ jobs:
         path: ./dist/
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
-        branch: gh-pages
+        branch: store
         folder: ./dist/
