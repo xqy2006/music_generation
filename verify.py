@@ -7,5 +7,5 @@ def check_contain_chinese(check_str):
 		else:
 			return True
 	return False
-#if check_contain_chinese(input):
-	#raise Exception('error')
+if check_contain_chinese(input):
+	raise Exception('error')
