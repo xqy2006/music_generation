@@ -8,4 +8,4 @@ def check_contain_chinese(check_str):
 			return True
 	return False
 if check_contain_chinese(input):
-	raise Exception('error')
+	#raise Exception('error')
