@@ -57,6 +57,7 @@ dur_model = Seq2Seq.Duration_Model(
 midi_model.set_state_dict(paddle.load('Midi_Model/final_model'))
 dur_model.set_state_dict(paddle.load('Duration_Model/final_model'))
 input_lyrics = input
+print(input_lyrics)
 lyrics = []
 for i, lyric in enumerate(input_lyrics.replace('\n', '')):
     if i % batch_size == 0:
@@ -64,6 +65,7 @@ for i, lyric in enumerate(input_lyrics.replace('\n', '')):
     lyrics[i // batch_size].append(ord(lyric))
 while len(lyrics[-1]) % batch_size != 0:
     lyrics[-1].append(ord('#'))
+print(lyrics)
 lyrics = paddle.to_tensor(lyrics)
 
 params_dict = paddle.load('Midi_Model/best_model')
