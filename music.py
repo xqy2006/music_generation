@@ -67,7 +67,7 @@ while len(lyrics[-1]) % batch_size != 0:
     lyrics[-1].append(ord('#'))
 print(lyrics)
 lyrics = paddle.to_tensor(lyrics)
-
+print(lyrics)
 params_dict = paddle.load('Midi_Model/best_model')
 midi_model.set_dict(params_dict)
 
